@@ -60,14 +60,24 @@ while not done:
 
     counter = 0
     # filter the words
+    res = []
     for word in words:
-        if counter == 3:
+        if counter == 5:
             break
         green_result = (re.findall(green_re, word) if green_re else True)
         yellow_result = (all([char in word for char in lifetime_yellow]) if lifetime_yellow else True)
         gray_result = (any([char in word for char in lifetime_gray]) if lifetime_gray else False)
         if green_result and yellow_result and not gray_result:
-            print(f'Try {word}')
+            res.append(word)
             counter += 1
+    if counter == 0:
+        print("No words found. Please check your input.")
+        continue
+    elif counter == 1:
+        print(f"The word is {res[0]}")
+        done = True
+        continue
+    else:
+        print(f'Try {", ".join(res)}')
 
     print("====================================")
