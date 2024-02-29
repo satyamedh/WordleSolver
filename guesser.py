@@ -40,14 +40,16 @@ while not done:
     gray_words = input("Enter the gray words(no order. same as yellow): ")
 
 
-    # regex building. just replace the _ with .
-    green_re = f'^{green_words.replace("_", ".")}'
 
     # for green, update only if the character is not _
     if green_words != "":
         for i in range(5):
             if green_words[i] != "_":
                 lifetime_green = lifetime_green[:i] + green_words[i] + lifetime_green[i + 1:]
+
+    # regex building. just replace the _ with .
+    green_re = f'^{lifetime_green.replace("_", ".")}'
+
     lifetime_yellow = nuke_duplicates(lifetime_yellow + list(yellow_words))
     lifetime_gray = nuke_duplicates(lifetime_gray + list(gray_words))
 
@@ -59,7 +61,7 @@ while not done:
 
     # filter the words
     for word in words:
-        green_result = (re.findall(lifetime_green, word) if green_words else True)
+        green_result = (re.findall(lifetime_green, word) if lifetime_green else True)
         yellow_result = (all([char in word for char in lifetime_yellow]) if lifetime_yellow else True)
         gray_result = (any([char in word for char in lifetime_gray]) if lifetime_gray else False)
         if green_result and yellow_result and not gray_result:
