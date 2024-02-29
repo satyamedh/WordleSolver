@@ -18,7 +18,7 @@ words = sorted(words)
 done = False
 while not done:
     # ask for the green words
-    green_words = input("Enter the green words(Example: if l and r are green in learn, l__r_): ")
+    green_words = input("Enter the green words(Example: if l and r are green in learn, l__r_. empty if none): ")
 
     if "_" not in green_words:
         print("Congrats on cheating ;)")
@@ -34,16 +34,10 @@ while not done:
     # regex building. just replace the _ with .
     green_re = f'^{green_words.replace("_", ".")}'
 
-    # for yellow, just use the | operator
-    yellow_re = f'{"|".join(yellow_words)}'
-
-    # for gray, same thing
-    gray_re = f'{"|".join(gray_words)}'
-
     # filter the words
     for word in words:
         green_result = (re.findall(green_re, word) if green_words else True)
-        yellow_result = (re.findall(yellow_re, word) if yellow_words else True)
-        gray_result = (re.findall(gray_re, word) if gray_words else False)
+        yellow_result = (all([char in word for char in yellow_words]) if yellow_words else True)
+        gray_result = (any([char in word for char in gray_words]) if gray_words else True)
         if green_result and yellow_result and not gray_result:
             print(word)
