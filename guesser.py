@@ -42,6 +42,8 @@ while not done:
 
     # filter the words
     for word in words:
+        green_result = (re.findall(green_re, word) if green_words else True)
+        yellow_result = (re.findall(yellow_re, word) if yellow_words else True)
         gray_result = (re.findall(gray_re, word) if gray_words else False)
-        if re.findall(green_re, word) and re.findall(yellow_re, word) and not gray_result:
+        if green_result and yellow_result and not gray_result:
             print(word)
