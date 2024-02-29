@@ -9,6 +9,7 @@ words = list(set(words))
 
 # remove empty strings
 words = [word for word in words if word]
+random.shuffle(words)
 
 
 
