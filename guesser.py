@@ -61,7 +61,7 @@ while not done:
 
     # filter the words
     for word in words:
-        green_result = (re.findall(lifetime_green, word) if lifetime_green else True)
+        green_result = (re.findall(green_re, word) if green_re else True)
         yellow_result = (all([char in word for char in lifetime_yellow]) if lifetime_yellow else True)
         gray_result = (any([char in word for char in lifetime_gray]) if lifetime_gray else False)
         if green_result and yellow_result and not gray_result:
