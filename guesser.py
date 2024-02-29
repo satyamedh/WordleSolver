@@ -4,16 +4,12 @@ import random
 import re
 
 PREFIX = "/mnt/c/Users/Satyamedh/PycharmProjects/WordleAI/"
-unsorted_words = open(PREFIX + "words.txt", "r").read().split("\n")
-print(len(unsorted_words))
-
-words = sorted(unsorted_words)
-# remove duplicates
+words = open(PREFIX + "words.txt", "r").read().split("\n")
 words = list(set(words))
+
 # remove empty strings
 words = [word for word in words if word]
-# sort
-words = sorted(words)
+
 
 
 def nuke_duplicates(list_of_words):
