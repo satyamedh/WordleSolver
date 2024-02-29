@@ -17,7 +17,7 @@ words = sorted(words)
 HAX = True
 
 cprint("Start...\n", "red", "on_black")
-our_word = random.choice(words)
+our_word: str = random.choice(words)
 if HAX: print(our_word)
 done = False
 history_of_prints = []
@@ -32,12 +32,17 @@ while not done:
         continue
     counter += 1
     curr_line = []
+    temp_copy = our_word
     if word != our_word:
         for i_char in range(len(our_word)):
-            if word[i_char] == our_word[i_char]:
+            if word[i_char] == temp_copy[i_char]:
                 curr_line.append(colored(word[i_char], "white", "on_green"))
-            elif word[i_char] in our_word:
+                # Replace the character in the temp copy with a _ to avoid double counting
+                temp_copy = temp_copy.replace(word[i_char], "_", 1)
+            elif word[i_char] in temp_copy:
                 curr_line.append(colored(word[i_char], "white", "on_yellow"))
+                # same thing here
+                temp_copy = temp_copy.replace(word[i_char], "_", 1)
             else:
                 curr_line.append(colored(word[i_char], "white", "on_grey"))
         history_of_prints.append(''.join(curr_line))
