@@ -57,6 +57,11 @@ while not done:
     lifetime_yellow = nuke_duplicates(lifetime_yellow + list(yellow_words))
     lifetime_gray = nuke_duplicates(lifetime_gray + list(gray_words))
 
+    # if something is in both yellow and gray, remove it from gray
+    for char in lifetime_yellow:
+        if char in lifetime_gray:
+            lifetime_gray.remove(char)
+
 
     # filter the words
     for word in words:

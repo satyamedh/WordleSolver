@@ -14,7 +14,7 @@ words = [word for word in words if word]
 # sort
 words = sorted(words)
 
-HAX = True
+HAX = False
 
 cprint("Start...\n", "red", "on_black")
 our_word: str = random.choice(words)
