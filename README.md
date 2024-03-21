@@ -4,5 +4,5 @@
 
 TODO:  
 - [ ] Add proper handling of repeated letters
-- [ ] Clean up and optimize code. It's a mess right now(blame it on the fact that it's 3:37am)
+- [ ] General code cleanup and optimization
 - [ ] Use statistics to improve predictions
